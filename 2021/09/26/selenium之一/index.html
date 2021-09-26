@@ -108,6 +108,68 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
@@ -141,6 +203,10 @@
 <p>由于本人是小白菜，对于selenium稳定的架构啥的，没搞过，也不清楚，只是简单的使用下selenium。<br>selenium，使用过程中，最重要的就是<strong>定位元素</strong>。</p>
 <p>对于元素的定位方法，确实有很多种，但是我常用的就是XPATH，工程常用的定位语句，咱也不知道为啥常用，培训班这么讲，咱就这么用呗。可能是经验吧。</p>
 <pre><code>browser.find_element(By.XPATH，&apos;&apos;）</code></pre><p>接下来就讲讲，定位元素的坑。</p>
+<h3 id="迎刃而解一号坑"><a href="#迎刃而解一号坑" class="headerlink" title="迎刃而解一号坑"></a>迎刃而解一号坑</h3><p>登陆页面后，就需要扫码访问权限，这真是搞死我了，由于cookie和请求头那里不太熟悉，导致没有办法直接用网页保存的cookie进入.算了，安慰一下自己。 即使使用cookie,也并不是简单引用就玩事儿了。它是不断变化的，还要找到变化的规律。索性这个功能就免了吧。<br>扫码的那个框框是一个动态的frame,这点是不能忽视的，得先定位到这个frame中。‘frame的id’</p>
+<pre><code>browser.switch_to.frame(&apos;&apos;)</code></pre><p>扫码，等frame变化，出现登陆的按钮，点击。</p>
+<pre><code>browser.find_element(By.XPATH, &quot;//button[@class=&apos;submit___2irOX&apos;]&quot;).click()  # 点击“登陆”</code></pre><h3 id="磨磨唧唧二号坑"><a href="#磨磨唧唧二号坑" class="headerlink" title="磨磨唧唧二号坑"></a>磨磨唧唧二号坑</h3><p>有时候会出现定位不到，再或者取错文本。其实是页面还没加载出来，selenium当然无法解析呀。<br>time,等待模块，就显得尤为重要。</p>
+<pre><code>time.sleep(10)</code></pre><p>###</p>
 
         </div>
 
