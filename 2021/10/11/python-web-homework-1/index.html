@@ -12,7 +12,7 @@
 
 
 
-<title>象与骑象人 | 沈万三</title>
+<title>python-web.homework-1 | 沈万三</title>
 
 
 
@@ -108,11 +108,73 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">象与骑象人</h1>
+            <h1 class="post-title">python-web.homework-1</h1>
             
                 <div class="post-meta">
                     
@@ -121,14 +183,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 30, 2021&nbsp;&nbsp;18:56:27</a>
+                        Date: <a href="#">October 11, 2021&nbsp;&nbsp;15:21:40</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/nature/">nature</a>
+                                <a href="/categories/project/">project</a>
                             
                         </span>
                     
@@ -137,7 +199,36 @@
         </header>
 
         <div class="post-content">
-            <p>看B站一位up主推荐这本书，索性就打开来看。<br>一开始推荐序的题目：人生与幸福：你认为是什么，它就是什么？<br>看到这句话，就感觉这本书的基调有些唯心。<br>不想看了，生活不需要靠道理。<br>得空还是看技术类的书籍吧。<br>从何时起，变得如此功利。<br>换了一本，明显读起来，心理没有十分的抗拒。<br>《三国史话》：史事哪有真的相同？我们所谓相同，都不过察之不精，误以为同罢了。<br>还是喜欢读史，三言两语，快意恩仇，比那些乱七八糟的小说，好看多了。<br>五行配四时<br>金木水火土：东西南北<br>木在东方，属春。<br>火在南方，属夏。<br>金在西方，属秋。<br>水在北方，属冬。</p>
+            <p>最近在学习python-web，写一下项目的感受吧.<br><font color="#965454"> 作业1，使用socket的底层网络协议，以一个客户端（如谷歌浏览器）的角度，去写一个爬虫的代码。</font><br>这比直接取调用request的库，更加底层，更能深入的了解爬虫技术。<br>课程代码是从底层一步步开始，逻辑思路无比清晰，学习吧。。。骚年</p>
+<p><img src="/2021/10/11/python-web-homework-1/1.png" alt="1"></p>
+<h3 id="第一步：主函数的思想，也就是直接写出这个函数的输入和输出。"><a href="#第一步：主函数的思想，也就是直接写出这个函数的输入和输出。" class="headerlink" title="第一步：主函数的思想，也就是直接写出这个函数的输入和输出。"></a>第一步：主函数的思想，也就是直接写出这个函数的输入和输出。</h3><p>输入：爬取的网址<br>输出：网址的内容</p>
+<pre><code>def main():
+    url = &apos;http://movie.douban.com/top250&apos;
+    r = get(url)
+    print(r)
+
+if __name__ == &apos;__main__&apos;:
+    main()</code></pre><h3 id="第二步：对封装的主函数get-进行编写。"><a href="#第二步：对封装的主函数get-进行编写。" class="headerlink" title="第二步：对封装的主函数get()进行编写。"></a>第二步：对封装的主函数get()进行编写。</h3><p>对于一个客户端<br><font color="#7b8b6f">1.创建连接<br>2.发送http请求头<br>3.接受响应</font>  </p>
+<pre><code>def get(url):
+ protocol, host, port, path = parsed_url(url)
+
+ s = socket_by_protocol(protocol)
+ s.connect((host, port))     ## 创建连接
+
+ request = &apos;GET {} HTTP/1.1\r\nHost: {}\r\nConnection: close\r\n\r\n&apos;.format(path, host)
+ encoding = &apos;utf-8&apos;
+ s.send(request.encode(encoding))   ## 发送请求
+
+ response = response_by_socket(s)
+ print(&apos;get response, &apos;, response)
+ r = response.decode(encoding)     ## 接受响应
+
+ status_code, headers, body = parsed_response(r)
+ if status_code in [301, 302]:   
+     url = headers[&apos;Location&apos;]
+     return get(url)              ## 重定向：如果响应发现301,302，在Location字段，重新获取网页。
+
+ return status_code, headers, body</code></pre><h3 id="第三步：对各个部分进行编写。"><a href="#第三步：对各个部分进行编写。" class="headerlink" title="第三步：对各个部分进行编写。"></a>第三步：对各个部分进行编写。</h3><p>URL：<a href="http://movie.douban.com/top250" target="_blank" rel="noopener">http://movie.douban.com/top250</a> 进行解析<br>protocol = http , host = movie.douban.com , port = 80 , path = /top250<br>未完待续…..</p>
 
         </div>
 
@@ -152,7 +243,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://shenxueer123.github.io/2021/09/30/%E8%B1%A1%E4%B8%8E%E9%AA%91%E8%B1%A1%E4%BA%BA/">https://shenxueer123.github.io/2021/09/30/%E8%B1%A1%E4%B8%8E%E9%AA%91%E8%B1%A1%E4%BA%BA/</a></span>
+                        <span><a href="https://shenxueer123.github.io/2021/10/11/python-web-homework-1/">https://shenxueer123.github.io/2021/10/11/python-web-homework-1/</a></span>
                     </p>
                 
                 
@@ -175,6 +266,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/python-web/"># python-web</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -185,10 +280,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/10/11/python-web-homework-1/">python-web.homework-1</a>
             
-            
-            <a class="next" rel="next" href="/2021/09/28/blog%E8%BF%81%E7%A7%BB/">blog迁移</a>
+            <a class="next" rel="next" href="/2021/09/30/%E8%B1%A1%E4%B8%8E%E9%AA%91%E8%B1%A1%E4%BA%BA/">象与骑象人</a>
             
         </section>
 
