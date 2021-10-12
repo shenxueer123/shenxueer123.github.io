@@ -12,7 +12,7 @@
 
 
 
-<title>python-web.homework-1.1 | 沈万三</title>
+<title>python-web.homework-2.1 | 沈万三</title>
 
 
 
@@ -174,7 +174,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">python-web.homework-1.1</h1>
+            <h1 class="post-title">python-web.homework-2.1</h1>
             
                 <div class="post-meta">
                     
@@ -183,7 +183,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 11, 2021&nbsp;&nbsp;15:21:40</a>
+                        Date: <a href="#">October 12, 2021&nbsp;&nbsp;13:25:28</a>
                         </span>
                     
                     
@@ -199,37 +199,25 @@
         </header>
 
         <div class="post-content">
-            <p>最近在学习python-web，写一下项目的感受吧.<br><font color="#965454"> 作业1，使用socket的底层网络协议，以一个客户端（如谷歌浏览器）的角度，去写一个爬虫的代码。</font><br>这比直接取调用request的库，更加底层，更能深入的了解爬虫技术。<br>课程代码是从底层一步步开始，逻辑思路无比清晰，学习吧。。。骚年</p>
-<p><img src="/2021/10/11/python-web-homework-1/1.png" alt="1"></p>
-<h3 id="第一步：主函数的思想，也就是直接写出这个函数的输入和输出。"><a href="#第一步：主函数的思想，也就是直接写出这个函数的输入和输出。" class="headerlink" title="第一步：主函数的思想，也就是直接写出这个函数的输入和输出。"></a>第一步：主函数的思想，也就是直接写出这个函数的输入和输出。</h3><p>输入：爬取的网址<br>输出：网址的内容</p>
-<pre><code>def main():
-    url = &apos;http://movie.douban.com/top250&apos;
-    r = get(url)
-    print(r)
-
-if __name__ == &apos;__main__&apos;:
-    main()</code></pre><h3 id="第二步：对封装的主函数get-进行编写。"><a href="#第二步：对封装的主函数get-进行编写。" class="headerlink" title="第二步：对封装的主函数get()进行编写。"></a>第二步：对封装的主函数get()进行编写。</h3><p>对于一个客户端<br><font color="#7b8b6f">1.创建连接<br>2.发送http请求头<br>3.接受响应</font>  </p>
-<pre><code>def get(url):
- protocol, host, port, path = parsed_url(url)
-
- s = socket_by_protocol(protocol)
- s.connect((host, port))     ## 创建连接
-
- request = &apos;GET {} HTTP/1.1\r\nHost: {}\r\nConnection: close\r\n\r\n&apos;.format(path, host)
- encoding = &apos;utf-8&apos;
- s.send(request.encode(encoding))   ## 发送请求
-
- response = response_by_socket(s)
- print(&apos;get response, &apos;, response)
- r = response.decode(encoding)     ## 接受响应
-
- status_code, headers, body = parsed_response(r)
- if status_code in [301, 302]:   
-     url = headers[&apos;Location&apos;]
-     return get(url)              ## 重定向：如果响应发现301,302，在Location字段，重新获取网页。
-
- return status_code, headers, body</code></pre><h3 id="第三步：对各个部分进行编写。"><a href="#第三步：对各个部分进行编写。" class="headerlink" title="第三步：对各个部分进行编写。"></a>第三步：对各个部分进行编写。</h3><p>URL：<a href="http://movie.douban.com/top250" target="_blank" rel="noopener">http://movie.douban.com/top250</a> 进行解析<br>protocol = http , host = movie.douban.com , port = 80 , path = /top250</p>
-
+            <p>一天学的迷迷糊糊地，代码直接上手看就成，听课，没用的。<br><font color="#965454"> server.py代码片段解析。</font></p>
+<h3 id="代码目标：把查询字段变成字典的样子。"><a href="#代码目标：把查询字段变成字典的样子。" class="headerlink" title="代码目标：把查询字段变成字典的样子。"></a>代码目标：把查询字段变成字典的样子。</h3><pre><code>  message=hello&amp;author=gua
+{
+    &apos;message&apos;: &apos;hello&apos;,
+    &apos;author&apos;: &apos;gua&apos;,
+}</code></pre><p>以下是片段代码。</p>
+<pre><code>def parsed_path(path):
+    index = path.find(&apos;?&apos;) 找？，找到就返回在第几个位置上，是数
+    if index == -1:      找不到，就返回原path
+        return path, {}   
+    else:
+        path, query_string = path.split(&apos;?&apos;, 1) 用？切一次，前面是path，后面是query_string 。
+        args = query_string.split(&apos;&amp;&apos;) 把query_string，用&amp;切，放到args.是一个数组。
+        query = {}
+        for arg in args: 循环每一个数组里面的元素
+            k, v = arg.split(&apos;=&apos;) 元素用＝切开，成两个数
+            query[k] = v
+            print(query)
+        return path, query</code></pre>
         </div>
 
         
@@ -243,7 +231,7 @@ if __name__ == &apos;__main__&apos;:
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://shenxueer123.github.io/2021/10/11/python-web-homework-1/">https://shenxueer123.github.io/2021/10/11/python-web-homework-1/</a></span>
+                        <span><a href="https://shenxueer123.github.io/2021/10/12/python-web-2-1/">https://shenxueer123.github.io/2021/10/12/python-web-2-1/</a></span>
                     </p>
                 
                 
@@ -280,10 +268,8 @@ if __name__ == &apos;__main__&apos;:
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/10/12/python-web-2-1/">python-web.homework-2.1</a>
             
-            
-            <a class="next" rel="next" href="/2021/09/30/%E8%B1%A1%E4%B8%8E%E9%AA%91%E8%B1%A1%E4%BA%BA/">象与骑象人</a>
+            <a class="next" rel="next" href="/2021/10/11/python-web-homework-1/">python-web.homework-1.1</a>
             
         </section>
 
