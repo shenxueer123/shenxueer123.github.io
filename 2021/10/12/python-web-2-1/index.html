@@ -217,7 +217,16 @@
             k, v = arg.split(&apos;=&apos;) 元素用＝切开，成两个数
             query[k] = v
             print(query)
-        return path, query</code></pre>
+        return path, query</code></pre><p>这个片段还是挺有意思的。<br><font color="#965454"> utils.py代码片段解析。</font></p>
+<h3 id="代码目标：打印函数被包裹起来，并且打印出当前的时间。"><a href="#代码目标：打印函数被包裹起来，并且打印出当前的时间。" class="headerlink" title="代码目标：打印函数被包裹起来，并且打印出当前的时间。"></a>代码目标：打印函数被包裹起来，并且打印出当前的时间。</h3><pre><code>import time
+def log(*args, **kwargs):
+    format = &apos;%Y/%m/%d %H:%M:%S&apos;
+    value = time.localtime(int(time.time()))
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># time.time(),返回值是从1970年1月1号，到现在的秒数，是float。</span><br><span class="line"># 强制变成 int ,localtime的返回值是&lt;class time.struct_time&gt;</span><br><span class="line"># time.struct_time(tm_year=2021, tm_mon=10, tm_mday=13, tm_hour=18, tm_min=59, tm_sec=43, tm_wday=2, tm_yday=286, tm_isdst=0)</span><br></pre></td></tr></table></figure>
+    dt = time.strftime(format, value)# 把time.struct_time，变成人能看懂的形式2021/10/13。
+    print(dt, *args, **kwargs)</code></pre><p>*args就是就是传递一个可变参数列表给函数实参，这个参数列表的数目未知，甚至长度可以为0。</p>
+<p>而**kwargs则是将一个可变的关键字参数的字典传给函数实参，同样参数列表长度可以为0或为其他值。<br>args类型是一个tuple，而kwargs则是一个字典dict，并且args只能位于kwargs的前面。</p>
+
         </div>
 
         
