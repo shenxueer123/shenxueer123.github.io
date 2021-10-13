@@ -108,6 +108,68 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
@@ -125,12 +187,30 @@
                         </span>
                     
                     
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/diary/">diary</a>
+                            
+                        </span>
+                    
                 </div>
             
         </header>
 
         <div class="post-content">
-            
+            <p>哦吼。期货小赚一笔~一定要好好分析下，啊哈哈哈<br>成功的原因：这是天时地利人和，怎么说呢.<br>前一天2021-10-12菜粕晚上之前处于盘整，因为拿不准，所以我就没有开单。<br>到了晚上，跌破前面的低位，想进，但是没进去，还是怕拿不准。<br>但是我从10分钟，20分钟，1小时，3小时的蜡烛图上看，下跌趋势。<br>日增仓为正，还挺多。感觉大家都在看空。<br>对比煤，金属，这两天期货市场跟过年了一样，一窝蜂的全部冲进去，有量就好做，价格波动的幅度比较大。<br>看看看</p>
+<p><img src="/2021/10/13/%E6%9C%9F%E8%B4%A7%E6%97%A5%E8%AE%B02021-10/2.jpg" alt="2"></p>
+<p>真心是过年了，看看这量，牛不牛吧.<br>单品种，印象最深的是-煤，煤飞了。最低是400点左右，现在高位1600，翻了4倍，太可怕了。<br>因为期货动力煤过热，导致国家出手干预，上调手续费至60，一开一平，12个点，短线的我瑟瑟发抖，不敢动，不敢动。<br>主要原因：</p>
+<ol>
+<li>马上进入冬季，所以煤会涨价。每年婆婆卖煤的时候，都会说每块蜂窝煤涨了3分，或者1毛，更有甚者涨5毛。对于煤的涨价是情理之中的，消耗品且不可再生，越用越少，越少越贵。</li>
+<li>秋天雨季，山西的煤矿是塌了不少。雨大不大，就看看前一阵河南郑州被淹，渭南的大荔被淹。。。可见今年的雨，确实不小。刷B站的时候，也有看到山西被淹，但不知道到这么严重。</li>
+<li>国家限电，煤烧的电。去查国家用电的来源，看看发电厂都怎么工作的，煤，水利，核电站，占比都是怎么分配的。</li>
+<li>市场情绪看起来很高涨。</li>
+</ol>
+<p><img src="/2021/10/13/%E6%9C%9F%E8%B4%A7%E6%97%A5%E8%AE%B02021-10/1.jpg" alt="1"></p>
+<p>早上画了两条线，止损11个点，止盈的量是有无限可能的。<br>想要短时间获利，一定要设立止盈线，<strong>一碰到就触发</strong>（这才是关键，市场情绪会很紧张的碰一下，然后回调，踩实的话，需要时间，还有可能庄家洗盘，印象中这样好几回了），这样就能规避掉很多风险，同时也规避了更高的获利。<br>害…..我就是赚个零花钱，不贪心，还想在市场上多活蹦跶两天，等技术成熟了着，再一把梭哈。<br>一定要等到明确的信号，再出手，糊糊涂涂的开单，就会糊糊涂涂的损失。</p>
+<h3 id="对于持仓量的理解还需要加强下，日增仓，成交量，这几个信号，加上K线图，一定会让概率的小宝贝儿，靠在你的肩膀上滴。"><a href="#对于持仓量的理解还需要加强下，日增仓，成交量，这几个信号，加上K线图，一定会让概率的小宝贝儿，靠在你的肩膀上滴。" class="headerlink" title="对于持仓量的理解还需要加强下，日增仓，成交量，这几个信号，加上K线图，一定会让概率的小宝贝儿，靠在你的肩膀上滴。"></a>对于持仓量的理解还需要加强下，日增仓，成交量，这几个信号，加上K线图，一定会让概率的小宝贝儿，靠在你的肩膀上滴。</h3>
         </div>
 
         
@@ -167,6 +247,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/qihuo/"># qihuo</a>
+                    
+                        
                 </span>
             </div>
             <div>
