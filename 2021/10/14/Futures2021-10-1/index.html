@@ -12,7 +12,7 @@
 
 
 
-<title>python-web.homework-2.1 | 沈万三</title>
+<title>Futures2021-10.2 | 沈万三</title>
 
 
 
@@ -174,7 +174,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">python-web.homework-2.1</h1>
+            <h1 class="post-title">Futures2021-10.2</h1>
             
                 <div class="post-meta">
                     
@@ -183,14 +183,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 12, 2021&nbsp;&nbsp;13:25:28</a>
+                        Date: <a href="#">October 14, 2021&nbsp;&nbsp;14:18:49</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/project/">project</a>
+                                <a href="/categories/diary/">diary</a>
                             
                         </span>
                     
@@ -199,33 +199,22 @@
         </header>
 
         <div class="post-content">
-            <p>一天学的迷迷糊糊地，代码直接上手看就成，听课，没用的。<br><font color="#965454"> server.py代码片段解析。</font></p>
-<h3 id="代码目标：把查询字段变成字典的样子-返回路径和查询的字典。"><a href="#代码目标：把查询字段变成字典的样子-返回路径和查询的字典。" class="headerlink" title="代码目标：把查询字段变成字典的样子,返回路径和查询的字典。"></a>代码目标：把查询字段变成字典的样子,返回路径和查询的字典。</h3><pre><code>  message=hello&amp;author=gua
-{
-    &apos;message&apos;: &apos;hello&apos;,
-    &apos;author&apos;: &apos;gua&apos;,
-}</code></pre><p>以下是片段代码。</p>
-<pre><code>def parsed_path(path):
-    index = path.find(&apos;?&apos;) 找？，找到就返回在第几个位置上，是数
-    if index == -1:      找不到，就返回原path
-        return path, {}   
-    else:
-        path, query_string = path.split(&apos;?&apos;, 1) 用？切一次，前面是path，后面是query_string 。
-        args = query_string.split(&apos;&amp;&apos;) 把query_string，用&amp;切，放到args.是一个数组。
-        query = {}
-        for arg in args: 循环每一个数组里面的元素
-            k, v = arg.split(&apos;=&apos;) 元素用＝切开，成两个数
-            query[k] = v
-            print(query)
-        return path, query</code></pre><p>这个片段还是挺有意思的。<br><font color="#965454"> utils.py代码片段解析。</font></p>
-<h3 id="代码目标：打印函数被包裹起来，并且打印出当前的时间。"><a href="#代码目标：打印函数被包裹起来，并且打印出当前的时间。" class="headerlink" title="代码目标：打印函数被包裹起来，并且打印出当前的时间。"></a>代码目标：打印函数被包裹起来，并且打印出当前的时间。</h3><pre><code>import time
-def log(*args, **kwargs):
-    format = &apos;%Y/%m/%d %H:%M:%S&apos;
-    value = time.localtime(int(time.time()))
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># time.time(),返回值是从1970年1月1号，到现在的秒数，是float。</span><br><span class="line"># 强制变成 int ,localtime的返回值是&lt;class time.struct_time&gt;</span><br><span class="line"># time.struct_time(tm_year=2021, tm_mon=10, tm_mday=13, tm_hour=18, tm_min=59, tm_sec=43, tm_wday=2, tm_yday=286, tm_isdst=0)</span><br></pre></td></tr></table></figure>
-    dt = time.strftime(format, value)# 把time.struct_time，变成人能看懂的形式2021/10/13。
-    print(dt, *args, **kwargs)</code></pre><p>*args就是就是传递一个可变参数列表给函数实参，这个参数列表的数目未知，甚至长度可以为0。</p>
-<p>而**kwargs则是将一个可变的关键字参数的字典传给函数实参，同样参数列表长度可以为0或为其他值。<br>args类型是一个tuple，而kwargs则是一个字典dict，并且args只能位于kwargs的前面。</p>
+            <p>来看看菜粕2201吧。时间：2019.07–2022.01。<br>首先从量的角度来分析一下，当前的市场是否活跃。</p>
+<ul>
+<li>活跃的市场证明参与的人数多，庄家会很难控盘，小韭菜在里面游啊游，一不小心就被老韭菜割了。<br>美股哥经常说，有量才有市。</li>
+<li>不活跃的市场，很容易被庄家控盘，进去就是个死翘翘。</li>
+</ul>
+<p>菜粕交易量激增的月份，每年都是固定的。从8月-12月，这5个月的交易量是平时交易量的好几倍。<br><strong>下半年可以关注这个期货产品。</strong></p>
+<p><img src="/2021/10/14/Futures2021-10-1/1.jpg" alt="1"></p>
+<p>由于工作的关系，只选择在早上开单。对比了下，一天中早中晚的量，都差不多。<br>一天早中晚，开盘的时候，比较剧烈，各方势力开始厮杀，小韭菜跟打赢的一方。</p>
+<h3 id="错过了一个开单机会。"><a href="#错过了一个开单机会。" class="headerlink" title="错过了一个开单机会。"></a>错过了一个开单机会。</h3><p>菜粕已经跌到2575日K的第一个低点位，且前一天晚上，尾盘有盘整的意思。<br>第二天早9点，多头冲破前30分钟的区间划线，开多。</p>
+<ul>
+<li>满足市场见底的情绪（主观），多头</li>
+<li>跟30分钟双方争斗后的趋势，多头</li>
+</ul>
+<p>为什么没有开单？因为没有想好出场的点位。<br>止损：划线区间的中间位置<br>止盈：看反弹的强弱，由于这是刚反弹，才启动，是真是假，还没办法辨别，进去小赚，然后快速出来。10个点位可以考虑下。</p>
+<p>当下我看了日增仓量，同比昨天有所下降，感觉参与人数在减少，或者观望人数在增加，这也是我开单犹豫的地方。<br>趋势没有走出来，一定是看不清楚的，所以呀，记录吧，记录吧，总会留下点什么的。</p>
+<p>这里再次祈祷，上证50起飞吧。</p>
 
         </div>
 
@@ -240,7 +229,7 @@ def log(*args, **kwargs):
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://shenxueer123.github.io/2021/10/12/python-web-2-1/">https://shenxueer123.github.io/2021/10/12/python-web-2-1/</a></span>
+                        <span><a href="https://shenxueer123.github.io/2021/10/14/Futures2021-10-1/">https://shenxueer123.github.io/2021/10/14/Futures2021-10-1/</a></span>
                     </p>
                 
                 
@@ -264,7 +253,7 @@ def log(*args, **kwargs):
                 <span class="tag">
                     
                     
-                        <a href="/tags/python-web/"># python-web</a>
+                        <a href="/tags/Futures/"># Futures</a>
                     
                         
                 </span>
@@ -277,10 +266,8 @@ def log(*args, **kwargs):
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/10/13/%E6%9C%9F%E8%B4%A7%E6%97%A5%E8%AE%B02021-10/">Futures2021-10.1</a>
             
-            
-            <a class="next" rel="next" href="/2021/10/11/python-web-homework-1/">python-web.homework-1.1</a>
+            <a class="next" rel="next" href="/2021/10/13/%E6%9C%9F%E8%B4%A7%E6%97%A5%E8%AE%B02021-10/">Futures2021-10.1</a>
             
         </section>
 
