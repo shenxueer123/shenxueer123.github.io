@@ -12,7 +12,7 @@
 
 
 
-<title>cook | 沈万三</title>
+<title>piaoer | 沈万三</title>
 
 
 
@@ -112,7 +112,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">cook</h1>
+            <h1 class="post-title">piaoer</h1>
             
                 <div class="post-meta">
                     
@@ -121,14 +121,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">November 1, 2021&nbsp;&nbsp;18:38:05</a>
+                        Date: <a href="#">November 7, 2021&nbsp;&nbsp;14:32:09</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/English/">English</a>
+                                <a href="/categories/project/">project</a>
                             
                         </span>
                     
@@ -137,14 +137,68 @@
         </header>
 
         <div class="post-content">
-            <p>Here are some words about cook.</p>
-<p>I‘d like to help pitch in with dinner.<br>pitch in ： to join with other people in doing a job<br>Her kids voluntarily pitch in with the garden work.</p>
-<p>Alright,put on this apron first.<br>                thisapron</p>
-<p>Boil some water and then whisk two eggs.<br>whisk ： move somewhere quickly</p>
-<p>I could do that with my eyes closed.</p>
-<p>take some meat and potatoes from the plastic bag.<br>How many potatoes do I need ?<br>three,And bring four bell peppers.<br>then dice the potatoes and slice the meat.<br>dice ： cut into cubes<br>slice ： a slice of bread ; piece ;</p>
-<p>where’s the peeler?<br>it’s in the cabinet.</p>
-<p>I guess cooking is not as easy as I thought.</p>
+            <p>一直以来都想写个刷票的代码，结果昨天误打误撞的，就写出了个自动登陆的功能。</p>
+<p>以下是保存cookies的代码。</p>
+<pre><code>from selenium import webdriver
+import time
+import json
+
+
+def open_url(log_url):
+    browser.get(log_url)
+    time.sleep(30)  # 进行扫码
+    return browser
+
+
+def get_cookies(browser):
+    dict_Cookies = browser.get_cookies()  # 获取list的cookies
+    json_Cookies = json.dumps(dict_Cookies)  # 转换成字符串保存,list没办法保存成文件
+    return json_Cookies
+
+
+def save_cookies(filename, json_Cookies):
+    with open(filename, &apos;w&apos;) as f:
+        f.write(json_Cookies)
+    print(&apos;cookies保存成功！&apos;)
+
+
+if __name__ == &quot;__main__&quot;:
+    browser = webdriver.Chrome()
+    log_url = &apos;https://www.damai.cn/&apos;
+    json_Cookies = get_cookies(open_url(log_url))
+    filename = &apos;D:\\study\\damai_cookies.txt&apos;
+    save_cookies(filename, json_Cookies)</code></pre><p>以下是使用cookies的代码。</p>
+<pre><code>from selenium import webdriver
+import json
+import time
+def open_url(log_url):
+    browser.get(log_url)
+    browser.delete_all_cookies()  # 首先先清除由于打开浏览器已经有的cookies
+    return browser
+
+
+def read_cookies(filename):
+    with open(filename, &apos;r&apos;, encoding=&quot;utf-8&quot;) as f:
+        listCookies = json.load(f)
+        print(listCookies)
+        # listCookies = json.loads(f.read())
+    return listCookies
+
+
+def add_cookies(browser,listCookies):
+    for cookie in listCookies:
+        # if &apos;expiry&apos; in cookie:
+        #     del cookie[&apos;expiry&apos;]
+        browser.add_cookie(cookie)
+    return browser
+
+
+if __name__ == &apos;__main__&apos;:
+    browser = webdriver.Chrome()
+    filename = &quot;D:\\study\\damai_cookies.txt&quot;
+    listCookies = read_cookies(filename)
+    log_url = &apos;https://www.damai.cn/&apos;
+    add_cookies(open_url(log_url), listCookies).refresh()</code></pre><p>这个模块就暂时到这里吧<del>~</del></p>
 
         </div>
 
@@ -159,7 +213,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://shenxueer123.github.io/2021/11/01/cook/">https://shenxueer123.github.io/2021/11/01/cook/</a></span>
+                        <span><a href="https://shenxueer123.github.io/2021/11/07/piaoer/">https://shenxueer123.github.io/2021/11/07/piaoer/</a></span>
                     </p>
                 
                 
@@ -183,7 +237,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/English/"># English</a>
+                        <a href="/tags/cookies/"># cookies</a>
                     
                         
                 </span>
@@ -196,10 +250,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/11/07/piaoer/">piaoer</a>
             
-            
-            <a class="next" rel="next" href="/2021/11/01/web-firm-project/">web-firm-project</a>
+            <a class="next" rel="next" href="/2021/11/01/cook/">cook</a>
             
         </section>
 
